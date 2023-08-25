@@ -27,7 +27,7 @@ const options = {
   },
 };
 
-let intervalId;
+let intervalId = 0;
 
 startButton.disabled = true;
 
