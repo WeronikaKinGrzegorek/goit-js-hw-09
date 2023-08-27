@@ -58,6 +58,17 @@ function handleclick() {
     const currentDate = new Date();
     const timeDifference = targetDate - currentDate;
 
+    if (timeDifference < 0) {
+      clearInterval(intervalId);
+      startButton.disabled = true;
+
+      daysElement.textContent = '00';
+      hoursElement.textContent = '00';
+      minutesElement.textContent = '00';
+      secondsElement.textContent = '00';
+      return;
+    }
+
     const { days, hours, minutes, seconds } = convertMs(timeDifference);
 
     daysElement.textContent = addLeadingZero(days);
@@ -65,13 +76,7 @@ function handleclick() {
     minutesElement.textContent = addLeadingZero(minutes);
     secondsElement.textContent = addLeadingZero(seconds);
 
-    if (timeDifference <= 0) {
-      clearInterval(intervalId);
-      startButton.disabled = true;
-      return;
-    } else {
-      startButton.disabled = false;
-    }
+    startButton.disabled = false;
   }
 }
 
